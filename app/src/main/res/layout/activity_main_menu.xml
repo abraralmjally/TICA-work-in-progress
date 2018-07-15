@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.wilki.tica.activities.MainMenuActivity"
+    android:id="@+id/activity_selection_menu">
+
+    <Button
+        android:layout_width="550dp"
+        android:layout_height="110dp"
+        android:layout_below="@+id/ticaImage"
+        android:id="@+id/screen_mode_btn"
+        android:layout_centerHorizontal="true"
+        android:onClick="startScreenMode"
+        android:background="@drawable/start_screen_btn"/>
+
+    <Button
+        android:layout_width="550dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/tangible_mode_btn"
+        android:layout_below="@+id/screen_mode_btn"
+        android:layout_centerHorizontal="true"
+        android:onClick="startTangibleMode"
+        android:background="@drawable/start_tangible_btn"/>
+
+    <Button
+        android:layout_width="550dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/create_new_task_btn"
+        android:layout_below="@id/tangible_mode_btn"
+        android:layout_centerHorizontal="true"
+        android:onClick="startTaskOptions"
+        android:background="@drawable/task_options_btn"/>
+
+    <ImageView
+        android:layout_width="550dp"
+        android:layout_height="350dp"
+        app:srcCompat="@drawable/tica"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:id="@+id/ticaImage" />
+
+</RelativeLayout>
+
