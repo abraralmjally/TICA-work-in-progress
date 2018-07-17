@@ -137,6 +137,7 @@ public class TangibleTaskActivity extends TaskActivity implements DialogClickLis
                     foundInstructions.add(Instruction.matchTopCodeToInstruction(currentCode));
                 } catch (TopCodeNotRecognisedException e){
                     // should worn user that a code was not recognised
+                    Toast.makeText(this, "" + currentCode.getCode(), Toast.LENGTH_LONG).show();
                 }
             }
             return foundInstructions;

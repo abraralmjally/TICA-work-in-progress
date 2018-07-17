@@ -56,6 +56,8 @@ public abstract class Instruction {
             return new If();
         } else if(code.getCode() == IfElse.CODENUMBER || code.getCode() == IfElse.CODENUMBER2){
             return new IfElse();
+        } else if(code.getCode() == Repeat.CODENUMBER) {
+            return new Repeat();
         } else {
             throw new TopCodeNotRecognisedException();
         }
