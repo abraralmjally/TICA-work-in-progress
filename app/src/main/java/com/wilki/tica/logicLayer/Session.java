@@ -48,7 +48,6 @@ public class Session {
     this.SessionID=sessionid;
     this.GroupID=groupId;
     this.TPlistsize = TPlistsize;
-    // currentTaskPerformance= getalltaskperformance(sessionid);
     Sessionavailable=true;
     }
 
@@ -94,6 +93,17 @@ public class Session {
 
     public String  getGroupID() { return GroupID; }
     public List<TaskPerformance> getTaskPerformanceList (){return TPlist;}
+
+    public void setTPlist (Context cont, Session session)
+    {
+        DbHelper dbHelper = new DbHelper(cont);
+        List<TaskPerformance> performances =dbHelper.readSelectedFromTaskTPTable(session.getSessionID());
+        TPlist=performances;
+        dbHelper.close();
+
+    }
+
+
     public int getNumPerformance(){ return TPlist.size(); }
 
     //TODO
@@ -109,6 +119,7 @@ public class Session {
 
             if(GName.equals(session.getGroupID()))
             {
+                Sessionavailable=false;
                 return session;
             }
         }

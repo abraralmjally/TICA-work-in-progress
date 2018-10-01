@@ -426,9 +426,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 interfaceType = InterfaceType.TANGIBLE;
             }
             List<TaskAttempt> taskAttempts = readSelectedFromTaskAttemptsTable(current_PerfId);
-
-            long current_time = resultCursor.getLong(2);
-            PerfData.add(new TaskPerformance(current_PerfId,Allsession.get(sessionID-1), tasks.get(current_Tasknum-1),current_TaskComp,interfaceType,taskAttempts));
+            PerfData.add(new TaskPerformance(current_PerfId,Allsession.get(current_SesNum), tasks.get(current_Tasknum-1),current_TaskComp,interfaceType,taskAttempts));
         }
         resultCursor.close();
         return PerfData;

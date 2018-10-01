@@ -98,6 +98,18 @@ public class TaskPerformance {
     }
 
     /**
+     * Returns a list of a spacific  TaskPerformances list from  the database.
+     * @param cont the application context.
+     * @return a list of all task performances related to session ID in the database.
+     */
+    public static List<TaskPerformance> getSelectedTaskPerformances(Context cont, int sessionID)
+{       DbHelper dbHelper = new DbHelper(cont);
+        List<TaskPerformance> performances = dbHelper.readSelectedFromTaskTPTable(sessionID);
+        dbHelper.close();
+        return performances;
+    }
+
+    /**
      * Deletes all TaskPerformance data from the database.
      * @param cont the application context.
      */
