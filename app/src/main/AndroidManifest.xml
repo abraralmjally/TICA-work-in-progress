@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -16,7 +17,7 @@
         android:largeHeap="true"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,15 +25,96 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainMenuActivity" />
-        <activity android:name=".activities.TaskOptionsActivity" />
-        <activity android:name=".activities.TaskSelectorActivity" />
-        <activity android:name=".activities.TangibleTaskActivity" />
-        <activity android:name=".activities.ScreenTaskActivity" />
-        <activity android:name=".activities.TaskCompleteActivity" />
-        <activity android:name=".activities.CreateNewTaskActivity" />
-        <activity android:name=".activities.ViewTaskPerformanceDataActivity" />
-        <activity android:name=".activities.TaskDetailsActivity" />
+
+        <activity android:name=".activities.GroupSelectorActivity"
+            android:label="@string/title_activity_GroupSelector"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity"/>
+        </activity>
+
+
+        <activity android:name=".activities.CreateNewGroupActivity"
+            android:label="@string/title_activity_CreateGroup"
+            android:parentActivityName=".activities.GroupSelectorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.GroupSelectorActivity"/>
+        </activity>
+
+        <activity android:name=".activities.MainMenuActivity"
+            android:label="@string/title_activity_MainMenuActivity"
+            android:parentActivityName=".activities.MainActivity" >
+            <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value=".activities.MainMenuActivity"/>
+        </activity>
+
+
+
+
+        <activity android:name=".activities.TaskOptionsActivity"
+            android:label="@string/title_activity_Options"
+            android:parentActivityName=".activities.MainMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainMenuActivity"/>
+        </activity>
+        <activity android:name=".activities.TaskSelectorActivity"
+            android:label="@string/title_activity_TaskSelector"
+            android:parentActivityName=".activities.MainMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainMenuActivity"/>
+        </activity>
+        //Todo: when I go back to taskDetail, the app crach
+        <activity android:name=".activities.TangibleTaskActivity"
+            android:label="@string/title_activity_TangibleTask"
+            android:parentActivityName=".activities.TaskDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.TaskDetailsActivity"/>
+        </activity>
+        //Todo: when I go back to taskDetail, the app crach
+        <activity android:name=".activities.ScreenTaskActivity"
+            android:label="@string/title_activity_ScreenTask"
+            android:parentActivityName=".activities.TaskDetailsActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.TaskDetailsActivity"/>
+        </activity>
+        <activity android:name=".activities.TaskCompleteActivity"
+            android:label="@string/title_activity_TaskComplete"
+            android:parentActivityName=".activities.MainMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainMenuActivity"/>
+        </activity>
+
+        <activity android:name=".activities.CreateNewTaskActivity"
+            android:label="@string/title_activity_Create_NewTask"
+            android:parentActivityName=".activities.TaskOptionsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.TaskOptionsActivity"/>
+        </activity>
+        <activity android:name=".activities.ViewTaskPerformanceDataActivity"
+            android:label="@string/task_performance_title"
+            android:parentActivityName=".activities.TaskOptionsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.TaskOptionsActivity"/>
+        </activity>
+
+        <activity android:name=".activities.TaskDetailsActivity"
+            android:label="@string/title_activity_TaskDetails"
+            android:parentActivityName=".activities.TaskSelectorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.TaskSelectorActivity"/>
+        </activity>
     </application>
 
 </manifest>

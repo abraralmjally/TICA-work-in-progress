@@ -71,7 +71,7 @@ public class TangibleTaskActivity extends TaskActivity implements DialogClickLis
         if(keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == 25){
             if((action == KeyEvent.ACTION_UP || action == 1 || action == 0) && !sent){
                 // tangible play button pressed.
-
+                Toast.makeText(getApplicationContext(), "tngible play button pressed..", Toast.LENGTH_LONG).show();
                 // play sound
                 final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
                 mp.start();

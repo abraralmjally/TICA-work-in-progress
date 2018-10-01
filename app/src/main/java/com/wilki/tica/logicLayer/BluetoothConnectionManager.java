@@ -31,6 +31,7 @@ public class BluetoothConnectionManager {
     private final UUID ROBOT_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private ArrayList<BluetoothDevice> devices;
     private final BluetoothAdapter bluetoothAdapter;
+    private final BluetoothDevice bluetoothDevice;
     private ConnectedThread robotConnection;
     private final Context cont;
     private boolean threadStarted;
@@ -40,9 +41,10 @@ public class BluetoothConnectionManager {
      * @param bluetoothAdapter bluetooth adapter.
      * @param cont application context.
      */
-    public BluetoothConnectionManager(BluetoothAdapter bluetoothAdapter, Context cont){
+    public BluetoothConnectionManager(BluetoothAdapter bluetoothAdapter, BluetoothDevice bluetoothDevice, Context cont){
         this.cont = cont;
         this.bluetoothAdapter = bluetoothAdapter;
+        this.bluetoothDevice=bluetoothDevice;
         threadStarted = false;
     }
 
@@ -92,29 +94,21 @@ public class BluetoothConnectionManager {
     }
 
     /*
-    * Gets a list of devices paired via Bluetooth and connects to the robot if present.
+     * Gets a list of devices paired via Bluetooth and connects to the robot if present.
      */
     private void makeConnection() {
-        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
-        if (pairedDevices.size() > 0) {
-            devices = new ArrayList<>(pairedDevices);
+
             robotConnection = createBluetoothConnection();
-        } else {
-            // throw an exception to prompt user to turn on and pair robot!
-        }
+
     }
 
     /*
      * Creates connection to the robot.
      */
     private ConnectedThread createBluetoothConnection(){
-        for(BluetoothDevice bd: devices){
-            if("HC-06".equals(bd.getName())){
-                return connectToDevice(bd);
-            }
 
-        }
-        return null;
+                return connectToDevice(bluetoothDevice);
+
     }
 
     /*
@@ -133,7 +127,7 @@ public class BluetoothConnectionManager {
     }
 
     /*
-    * Class for creating a Bluetooth connection concrrently.
+     * Class for creating a Bluetooth connection concrrently.
      */
     private class ConnectThread extends Thread {
         private final BluetoothSocket mmSocket;

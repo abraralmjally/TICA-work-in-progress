@@ -41,6 +41,7 @@ public class Task implements Serializable {
     private Pos currentTablePos;
     private List<Instruction> instructionsToSend;
 
+
     /**
      * Constructor for a new Task object.
      * @param taskLayout the TaskLayout of the Task.

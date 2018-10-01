@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="PrimaryColor">#ffffff</color>
+    <color name="PrimaryLightColor">#ffff54</color>
+    <color  name="PrimaryDarkColor">#c7ac00</color>
+    <color name="SecondaryColor">#fffde7</color>
+    <color  name="SecondaryLightColor">#6f62ff</color>
+    <color  name="SecondaryDarkColor">#0007ca</color>
+    <color name="PrimaryTextColorB">#000000</color>
+    <color name="SecondaryTextColorW">#ffffff</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBlack">#000000</color>
+
+
+    <!-- 12% opacity black background color -->
+    <color name="mtrl_btn_bg_color_disabled">#1F000000</color>
+    <!-- 38% opacity black text color -->
+    <color name="mtrl_btn_text_color_disabled">#61000000</color>
+    <!-- 0% opacity white container fill -->
+    <color name="mtrl_btn_transparent_bg_color">#00ffffff</color>
 </resources>

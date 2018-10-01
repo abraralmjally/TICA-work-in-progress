@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TICA.iml" filepath="$PROJECT_DIR$/TICA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TICA-work in progress.iml" filepath="$PROJECT_DIR$/TICA-work in progress.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

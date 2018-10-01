@@ -1,6 +1,7 @@
 package com.wilki.tica.logicLayer;
 
 import android.content.Context;
+import android.os.SystemClock;
 
 import com.wilki.tica.dataLayer.DbHelper;
 
@@ -24,18 +25,34 @@ public class TaskPerformance {
     private final List<TaskAttempt> taskAttempts;
     private boolean taskCompleted;
     private TaskAttempt currentAttempt;
+    private long timeStarted;
+    private long timeFinished;
+    private long PerformancetTime;
+    private Session SessionToPerf;
+
+    /**
+     * Constructor used to create a new task attempt.
+
+    TaskPerformance(){
+        timeStarted = SystemClock.elapsedRealtime();
+        timeFinished = 0;
+
+    } */
 
     /**
      * Constructor used to create a fresh task performance.
      * @param taskToAttempt the task the performance is on.
      * @param interfaceType the type of the interface being used for the performance.
      */
-    public TaskPerformance(Task taskToAttempt, InterfaceType interfaceType){
+    public TaskPerformance(Session SessionToPerf, Task taskToAttempt, InterfaceType interfaceType){
         this.taskToAttempt = taskToAttempt;
         this.interfaceType = interfaceType;
         taskCompleted = false;
         currentAttempt = new TaskAttempt();
         taskAttempts = new ArrayList<>();
+        timeStarted = SystemClock.elapsedRealtime();
+        this.SessionToPerf= SessionToPerf;
+
     }
 
     /**
@@ -47,12 +64,14 @@ public class TaskPerformance {
      * @param interfaceType the type of interface used for the performance.
      * @param taskAttempts a list of task attempts that made up the performance.
      */
-    public TaskPerformance(int performanceId, Task taskToAttempt, boolean completed, InterfaceType interfaceType, List<TaskAttempt> taskAttempts) {
+    public TaskPerformance(int performanceId, Session SessionToPerf,Task taskToAttempt, boolean completed, InterfaceType interfaceType, List<TaskAttempt> taskAttempts) {
         this.performanceId = performanceId;
         this.taskToAttempt = taskToAttempt;
         this.taskCompleted = completed;
         this.interfaceType = interfaceType;
         this.taskAttempts = taskAttempts;
+        PerformancetTime=getTaskPerformanceDuration();
+        this.SessionToPerf= SessionToPerf;
     }
 
     /**
@@ -138,6 +157,8 @@ public class TaskPerformance {
         currentAttempt = new TaskAttempt();
     }
 
+
+
     /**
      * @return the task that is set for this task performance.
      */
@@ -159,4 +180,17 @@ public class TaskPerformance {
      * @return the ID of the task performance.
      */
     public int getPerformanceId(){ return performanceId; }
+
+    /**
+     * Stops the timer on the task attempt and records the attempt duration on the attemptTime
+     * field.
+     */
+
+    public Session getSession(){
+        return SessionToPerf;
+    }
+
+    public void setSession(Session s){ SessionToPerf= s; }
+
+
 }

@@ -13,6 +13,14 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp" />
     <TextView
+        android:id="@+id/SessionNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/smallFont"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
         android:id="@+id/taskNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

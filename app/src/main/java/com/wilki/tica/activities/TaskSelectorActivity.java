@@ -32,7 +32,9 @@ public class TaskSelectorActivity extends AppCompatActivity {
 
     private List<Task> taskList;
     private int selectedTask;
+    private   String SelectedGroupName;
     private InterfaceType selectedInterfaceType;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class TaskSelectorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_selector);
         Intent receivedIntent = getIntent();
         selectedInterfaceType = (InterfaceType) receivedIntent.getSerializableExtra("INTERFACE_TYPE");
+        SelectedGroupName = receivedIntent.getStringExtra("SelectedGroup");
         selectedTask = 0;
 
         // set font
@@ -75,6 +78,7 @@ public class TaskSelectorActivity extends AppCompatActivity {
         } else if (selectedInterfaceType == InterfaceType.TANGIBLE){
             taskDetailsIntent.putExtra("MODE", InterfaceType.TANGIBLE);
         }
+        taskDetailsIntent.putExtra("SelectedGroup", SelectedGroupName);
         startActivity(taskDetailsIntent);
     }
 

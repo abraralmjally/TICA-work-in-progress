@@ -1,40 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- android:paddingBottom="@dimen/activity_vertical_margin"
+  android:paddingLeft="@dimen/activity_horizontal_margin"
+  android:paddingRight="@dimen/activity_horizontal_margin"
+  android:paddingTop="@dimen/activity_vertical_margin"
+  android:orientation="vertical"
+  android:theme="@style/AppTheme.NoActionBar" !-->
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:theme="@style/AppTheme.NoActionBar"
+    android:background="@color/PrimaryColor"
     tools:context="com.wilki.tica.activities.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:contentDescription="the name of the application"
+            app:srcCompat="@drawable/tica"
+            android:paddingBottom="30dp"/>
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_gravity="center"
+            android:background="@color/SecondaryColor"
+            android:text="Information:"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/PrimaryTextColorB"
+            android:textStyle="bold"
+            android:paddingBottom="30dp"/>
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_gravity="center"
+
+            android:textStyle="bold"
+            android:background="@color/SecondaryColor"
+            android:text="Status:"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/PrimaryTextColorB"
+            android:paddingBottom="44dp"
+             />
 
 
-    <Button
-        android:background="@drawable/button"
-        android:layout_width="550dp"
-        android:layout_height="110dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="150dp"
-        android:id="@+id/button3"
-        android:onClick="taskMenu"/>
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_gravity="center"
+            android:text="@string/Welcome"
+            android:textColor="@color/PrimaryTextColorB"
+            android:textSize="@dimen/bottom_navigation_icon"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textStyle="bold|italic"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp"/>
+        <Button
+            android:id="@+id/button3"
+            android:layout_gravity="center"
+            android:layout_width="400dp"
+            android:layout_height="110dp"
+            android:layout_weight="0"
+            android:background="@drawable/button"
+            android:onClick="taskMenu" />
 
-    <ImageView
-        android:layout_width="550dp"
-        android:layout_height="550dp"
-        app:srcCompat="@drawable/robot_3"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/imageView" />
+        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipe_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <ListView
+                android:id="@+id/pairedlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:dividerHeight="2dp"
+                android:textColor="@color/PrimaryTextColorB"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:background="@color/SecondaryTextColorW" />
+        </android.support.v4.widget.SwipeRefreshLayout>
 
-    <ImageView
-        android:layout_width="550dp"
-        android:layout_height="350dp"
-        app:srcCompat="@drawable/tica"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/imageView2"
-        android:layout_marginTop="20dp"/>
-</RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

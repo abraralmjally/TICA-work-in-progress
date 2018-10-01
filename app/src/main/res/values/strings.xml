@@ -23,16 +23,62 @@
     <string name="task_performance_title">task performance</string>
     <string name="tap_a_task_for_a_detailed_break_down">tap a task for a detailed break down</string>
     <string name="task_number">task number</string>
+    <string name="session">Session</string>
     <string name="task">task</string>
     <string name="attempts">attempts</string>
     <string name="completed">completed</string>
     <string name="time">time</string>
+    <string name="Welcome">Select a device from your paired list </string>
     <string name="interface_type">interface type</string>
-    <string name="select_a_task">select a task</string>
+    <string name="select_a_task">Select a task</string>
+    <string name="select_a_group">Select a group</string>
+    <string name="SchoolName">School</string>
+    <string name="hint_Name_School">Schhol name</string>
+    <string name="create_new_group">Create new  group</string>
+    <string name="category_Group">Group </string>
+    <string name="hint_Group_name">Group Name</string>
+    <string name="category_Student1">Student 1 </string>
+    <string name="hint_Student_infoNotfound">if you could not find student name please insert below </string>
+    <string name="hint_Student_gender">Student Gender </string>
+    <string name="category_Student2">Student 2 </string>
+    <string name="hint_Student_name">Student Name</string>
+    <!-- Label for gender information in the editor [CHAR LIMIT=30] -->
+    <string name="category_gender">Gender</string>
+    <!-- Label for dropdown menu option if the student is male [CHAR LIMIT=20] -->
+    <string name="gender_male">Male</string>
+    <!-- Label for dropdown menu option if the student is female [CHAR LIMIT=20] -->
+    <string name="gender_female">Female</string>
     <string name="instructions">instructions</string>
     <string name="exit_fragment_text">you are about to exit the current task attempt are you sure?</string>
     <string name="task_complete_well_done">task complete well done!</string>
     <string name="task_thumbnail">Task thumbnail</string>
     <string name="font_path">fonts/testf.ttf</string>
     <string name="confirm_delete">confirm delete</string>
+    <string name='bottomnav_title_0'>Exit</string>
+    <string name='bottomnav_title_1'>Home</string>
+    <string name='bottomnav_title_2'>Back</string>
+    <string name="title_Main_Activity">Connection</string>
+    <string name="title_activity_GroupSelector">Select group </string>
+    <string name="title_activity_CreateGroup">create new  group </string>
+    <string name="title_activity_Create_NewTask">Creat New Task</string>
+    <string name="title_activity_MainMenuActivity">Main Menu</string>
+    <string name="title_activity_ScreenTask">Graphical User Interface Mode</string>
+    <string name="title_activity_TangibleTask">Tangible User Interface Mode </string>
+    <string name="title_activity_TaskActivity">Task Activity</string>
+    <string name="title_activity_TaskComplete">Taske Complete </string>
+    <string name="title_activity_TaskDetails">Taske Details</string>
+    <string name="title_activity_Options">Task Settings </string>
+    <string name="title_activity_TaskSelector">Task Selector</string>
+    <string name="title_activity_View_Task_Performance">Task Performance </string>
+    <string name="action_insert_Sessions_dummy_data">Insert Dummy  Sessions Data</string>
+    <string name="action_insert_student_dummy_data">Insert Dummy  student Data</string>
+    <!-- Label for overflow menu option that deletes all school data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_Sessions">Delete All Sessions</string>
+    <string name="action_delete_all_student">Delete All students</string>
+
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+
+
+
 </resources>

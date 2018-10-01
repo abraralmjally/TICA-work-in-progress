@@ -43,6 +43,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
             R.id.instTV4, R.id.instTV5, R.id.instTV6};
     private ImageView[] images;
     private TextView[] qtyLabels;
+    private   String SelectedGroupName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
         Intent receivedIntent = getIntent();
         currentTask = (Task) receivedIntent.getSerializableExtra("SELECTED_TASK");
         interfaceType = (InterfaceType) receivedIntent.getSerializableExtra("MODE");
+        SelectedGroupName = receivedIntent.getStringExtra("SelectedGroup");
         setTaskLayoutImage(); // set the image of the task layout.
         TextView taskNum = (TextView) findViewById(R.id.taskNumber);
         taskNum.setText("task " + currentTask.getTaskNumber());
@@ -104,6 +106,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
             toStart = new Intent(getApplicationContext(), TangibleTaskActivity.class);
         }
         toStart.putExtra("SELECTED_TASK", currentTask);
+        toStart.putExtra("SelectedGroup", SelectedGroupName);
         startActivity(toStart);
     }
 

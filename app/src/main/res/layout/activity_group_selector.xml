@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_group_selector"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.wilki.tica.activities.GroupSelectorActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:orientation="vertical"
+        android:id="@+id/content_group">
+
+        <TextView
+            android:id="@+id/select_a_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_a_group"
+            android:textSize="80sp" />
+
+        <!-- School category -->
+    <LinearLayout
+        android:id="@+id/school_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/SchoolName"
+            android:textColor="@color/SecondaryDarkColor"
+            android:fontFamily="sans-serif-medium"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:id="@+id/text_view_schoolnamespinner"/>
+
+            <!-- school drop-down spinner -->
+            <Spinner
+                android:id="@+id/spinner_school_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown" />
+
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/grouplist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="72dp"
+        android:background="#FFFFFF"
+        android:columnWidth="200dp"
+        android:dividerHeight="2dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:textColor="@color/PrimaryTextColorB"
+        android:verticalSpacing="30dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:background="@color/SecondaryTextColorW" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/content_group"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="228dp"
+            android:layout_height="66dp"
+
+            android:background="@drawable/create_new_group_btn"
+            android:onClick="CreateNewGroup" />
+
+        <Button
+            android:id="@+id/button_start"
+            android:layout_width="228dp"
+            android:layout_height="66dp"
+            android:background="@drawable/button"
+            android:onClick="taskMenu" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

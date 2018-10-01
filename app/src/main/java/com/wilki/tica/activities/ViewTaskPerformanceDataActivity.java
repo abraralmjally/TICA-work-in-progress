@@ -125,6 +125,7 @@ public class ViewTaskPerformanceDataActivity extends AppCompatActivity implement
                 view = getLayoutInflater().inflate(R.layout.perf_list_item, null);
             }
             ImageView taskImage = (ImageView) view.findViewById(R.id.taskImg);
+            TextView SessionNum = (TextView) view.findViewById(R.id.SessionNum);
             TextView taskNum = (TextView) view.findViewById(R.id.taskNum);
             TextView taskAttempts = (TextView) view.findViewById(R.id.taskAttempts);
             TextView taskCompleted = (TextView) view.findViewById(R.id.taskCompleted);
@@ -138,7 +139,7 @@ public class ViewTaskPerformanceDataActivity extends AppCompatActivity implement
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath(),bmOptions);
             taskImage.setImageBitmap(bitmap);
-
+            SessionNum.setText(Integer.toString(curPerformance.getSession().getSessionID()));
             taskNum.setText(Integer.toString(curPerformance.getTask().getTaskNumber()));
             taskAttempts.setText(Integer.toString(curPerformance.getNumAttempts()));
             taskCompleted.setText(Boolean.toString(curPerformance.getTaskCompleted()));

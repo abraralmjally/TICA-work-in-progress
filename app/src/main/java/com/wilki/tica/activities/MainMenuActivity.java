@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.wilki.tica.logicLayer.CStudents;
 import com.wilki.tica.logicLayer.InterfaceType;
 import com.wilki.tica.R;
+
+import java.util.List;
 
 /**
  * Created by John Wilkie on 29/11/2016.
@@ -15,10 +18,17 @@ import com.wilki.tica.R;
 
 public class MainMenuActivity extends AppCompatActivity {
 
+    String SelectedGroupName ;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent extras = getIntent();
+       SelectedGroupName = extras.getStringExtra("SelectedGroup");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+
     }
 
     /**
@@ -28,6 +38,8 @@ public class MainMenuActivity extends AppCompatActivity {
     public void startScreenMode(View view){
         Intent selectTaskIntent = new Intent(getApplicationContext(), TaskSelectorActivity.class);
         selectTaskIntent.putExtra("INTERFACE_TYPE", InterfaceType.SCREEN);
+        selectTaskIntent.putExtra("SelectedGroup", SelectedGroupName);
+
         startActivity(selectTaskIntent);
     }
 
@@ -38,6 +50,7 @@ public class MainMenuActivity extends AppCompatActivity {
     public void startTangibleMode(View view){
         Intent selectTaskIntent = new Intent(getApplicationContext(), TaskSelectorActivity.class);
         selectTaskIntent.putExtra("INTERFACE_TYPE", InterfaceType.TANGIBLE);
+        selectTaskIntent.putExtra("SelectedGroup", SelectedGroupName);
         startActivity(selectTaskIntent);
     }
 
