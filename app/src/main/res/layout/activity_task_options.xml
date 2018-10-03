@@ -47,6 +47,16 @@
         android:layout_below="@+id/view_task_data_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:id="@+id/SQLite2Excel"
+        android:onClick="ExportSqLitetoExel"
+        android:background="@drawable/export_excl_btn"/>
+
+    <Button
+        android:layout_width="550dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/SQLite2Excel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:id="@+id/main_menu_btn"
         android:onClick="returnToMainMenu"
         android:background="@drawable/main_menu_s_button"/>

@@ -16,19 +16,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".CatalogActivity">
 
-    <item
-        android:id="@+id/action_insert_session_dummy_data"
-        android:title="@string/action_insert_Sessions_dummy_data"
-        app:showAsAction="never" />
-    <item
+<item
         android:id="@+id/action_insert_student_dummy_data"
         android:title="@string/action_insert_student_dummy_data"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_delete_all_Sessions"
-        android:title="@string/action_delete_all_Sessions"
-        app:showAsAction="never" />
     <item
     android:id="@+id/action_delete_all_students"
     android:title="@string/action_delete_all_student"

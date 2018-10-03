@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -68,6 +69,11 @@ public class CreateNewGroupActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_create);
+
+        TextView title = (TextView) findViewById(R.id.create_new_group);
+        Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.font_path));
+        title.setTypeface(customFont);
+
         mDbHelper = new DbHelper(this);
         // Find all relevant views that we will need to read user input from
         SchoolNameSpinner = (Spinner) findViewById(R.id.spinner_school);
@@ -140,6 +146,7 @@ public class CreateNewGroupActivity extends AppCompatActivity  {
         }else {
             Toast.makeText(this,"Group name updated successfully for Student 2: " + newwRowID, Toast.LENGTH_SHORT).show ();
         }
+       StudentsNameslist=mDbHelper.fetchAllStudents();
 
         db.close(); // Closing database connection
 
@@ -161,7 +168,9 @@ public class CreateNewGroupActivity extends AppCompatActivity  {
             case R.id.action_save:
                 CreateNewGroupDB();
                 //TODO after the group is created a new listed should be sent to this page
-
+                  Intent toLaunch = new Intent(getApplicationContext(), GroupSelectorActivity.class);
+                toLaunch.putExtra("Studentslist",(Serializable) StudentsNameslist);
+                startActivity(toLaunch);
                 finish();
                 return true;
             // Respond to a click on the "Delete" menu option

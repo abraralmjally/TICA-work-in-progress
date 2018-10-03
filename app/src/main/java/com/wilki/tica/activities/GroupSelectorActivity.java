@@ -2,6 +2,7 @@ package com.wilki.tica.activities;
 
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -45,6 +46,10 @@ public class GroupSelectorActivity extends AppCompatActivity implements AdapterV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_selector);
+        TextView title = (TextView) findViewById(R.id.select_a_group);
+        Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.font_path));
+
+        title.setTypeface(customFont);
         SchoolNameSpinner = (Spinner) findViewById(R.id.spinner_school_selector);
          Grouplist = (ListView) findViewById(R.id.grouplist);
          //TODO after the group is created a new listed should be sent to this page

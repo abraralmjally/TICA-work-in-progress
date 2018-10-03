@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 import android.provider.BaseColumns;
 import android.util.Log;
 import android.widget.TextView;
@@ -26,11 +27,11 @@ import com.wilki.tica.dataLayer.DbContract.Sessions;
 import com.wilki.tica.dataLayer.DbContract.Students;
 
 
-
-
-
-
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -555,6 +556,11 @@ public class DbHelper extends SQLiteOpenHelper {
         }
         StudentCursor.close();
         return Studentslist;
+    }
+
+
+    private void exportDB(){
+
     }
 
 

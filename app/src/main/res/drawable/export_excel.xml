@@ -2,16 +2,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_enabled="false"
-        android:drawable="@drawable/cancel_btn_press" />
+        android:drawable="@drawable/export_excl_btn_pressed" />
     <item
         android:state_pressed="true"
         android:state_enabled="true"
-        android:drawable="@drawable/cancel_btn_press" />
+        android:drawable="@drawable/export_excl_btn_pressed" />
     <item
         android:state_focused="true"
         android:state_enabled="true"
-        android:drawable="@drawable/create_new_group_btn" />
+        android:drawable="@drawable/export_excl_btn" />
     <item
         android:state_enabled="true"
-        android:drawable="@drawable/create_new_group_btn" />
+        android:drawable="@drawable/export_excl_btn" />
 </selector>

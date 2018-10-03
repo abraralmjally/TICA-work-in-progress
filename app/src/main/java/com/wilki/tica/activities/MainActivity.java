@@ -2,7 +2,9 @@ package com.wilki.tica.activities;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
+
+import com.ajts.androidmads.library.ExcelToSQLite;
+import com.ajts.androidmads.library.SQLiteToExcel;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,6 +13,9 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +28,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.wilki.tica.R;
@@ -34,8 +40,16 @@ import com.wilki.tica.exceptions.NoBluetoothException;
 import com.wilki.tica.TICA;
 import com.wilki.tica.fragments.BusyDialogFragment;
 import com.wilki.tica.logicLayer.InterfaceType;
+import com.wilki.tica.logicLayer.Students;
+import com.wilki.tica.logicLayer.Utils;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -56,9 +70,12 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<BluetoothDevice> pairedDeviceArrayList;
     //Register for the ACTION_FOUND broadcast//
     boolean isRegistered = false;
-
     IntentFilter filter ;
-    private DbHelper mDbHelper;
+
+    // to deal with the database
+     DbHelper mDbHelper;
+    public static final String DATABASE_NAME = "Tasks.db";
+    String directory_path = Environment.getExternalStorageDirectory().getPath() + "/Backup/Copy of users.xls";
 
 
     @Override
@@ -344,99 +361,88 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void insertStudent()
-    {
+    private void insertStudent(final View view) throws IOException {
 
 
+        mDbHelper = new DbHelper(getApplicationContext());
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
+/*
+        if (!file.exists()) {
+            Utils.showSnackBar(view, "No file");
 
-        ContentValues values = new ContentValues();
-        values.put(DbContract.Students.COLUMN_NAME_STUDENT,"Umar");
-        values.put(DbContract.Students.COLUMN_NAME_GENDER,1);
-        values.put(DbContract.Students.COLUMN_NAME_SCHOOL,"140");
-        long newwRowID = db.insert(DbContract.Students.TABLE_NAME,null,values);
-        Log.v("MainActivity","New Student ID"+ newwRowID);
-        if (newwRowID == -1){
-            Toast.makeText(this,"Error with saving Student", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this,"Student  saved with row id:" + newwRowID, Toast.LENGTH_SHORT).show ();
 
+            return;
         }
-        ContentValues values1 = new ContentValues();
-        values.put(DbContract.Students.COLUMN_NAME_STUDENT,"Raseel");
-        values.put(DbContract.Students.COLUMN_NAME_GENDER,1);
-        values.put(DbContract.Students.COLUMN_NAME_SCHOOL,"AlEhasan");
-        long newwRowID1 = db.insert(DbContract.Students.TABLE_NAME,null,values1);
-        Log.v("MainActivity","New Student ID"+ newwRowID);
-        if (newwRowID1 == -1){
-            Toast.makeText(this,"Error with saving Student", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this,"Student  saved with row id:" + newwRowID1, Toast.LENGTH_SHORT).show ();
+        // Is used to import data from excel without dropping table
+        // ExcelToSQLite excelToSQLite = new ExcelToSQLite(getApplicationContext(), DBHelper.DB_NAME);
 
-        }
-        ContentValues values2 = new ContentValues();
-        values.put(DbContract.Students.COLUMN_NAME_STUDENT,"Abrar");
-        values.put(DbContract.Students.COLUMN_NAME_GENDER,1);
-        values.put(DbContract.Students.COLUMN_NAME_SCHOOL,"AlEhasan");
-        long newwRowID2 = db.insert(DbContract.Students.TABLE_NAME,null,values2);
-        Log.v("MainActivity","New Student ID"+ newwRowID);
-        if (newwRowID2 == -1){
-            Toast.makeText(this,"Error with saving Student", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this,"Student  saved with row id:" + newwRowID2, Toast.LENGTH_SHORT).show ();
+        // if you want to add column in excel and import into DB, you must drop the table
+        ExcelToSQLite excelToSQLite = new ExcelToSQLite(getApplicationContext(), mDbHelper.getDatabaseName(), false);
+        // Import EXCEL FILE to SQLite
+        excelToSQLite.importFromFile(directory_path, new ExcelToSQLite.ImportListener() {
+            @Override
+            public void onStart() {
 
-        }
-        ContentValues values3 = new ContentValues();
-        values.put(DbContract.Students.COLUMN_NAME_STUDENT,"Abeer");
-        values.put(DbContract.Students.COLUMN_NAME_GENDER,1);
-        values.put(DbContract.Students.COLUMN_NAME_SCHOOL,"AlEhasan");
-        long newwRowID3 = db.insert(DbContract.Students.TABLE_NAME,null,values3);
-        Log.v("MainActivity","New Student ID"+ newwRowID);
-        if (newwRowID3 == -1){
-            Toast.makeText(this,"Error with saving Student", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this,"Student  saved with row id:" + newwRowID3, Toast.LENGTH_SHORT).show ();
+            }
 
-        }
+            @Override
+            public void onCompleted(String dbName) {
+                Utils.showSnackBar(view, "Excel imported into " + dbName);
+               // Toast.makeText(this,"Excel imported int", Toast.LENGTH_SHORT).show ();
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Utils.showSnackBar(view, "Error : " + e.getMessage());
+            }
+        });
         db.close();
 
-    }
+     }*/
 
-   /* private void insertGroup()
+        File file = new File(directory_path);
+        if (!file.exists()) {
+            Utils.showSnackBar(view, "No file");
+            return;
+        }
 
-    {
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(DbContract.Groups.COLUMN_NAME_NAME,"Abrar");
-        values.put(DbContract.Groups.COLUMN_NAME_SCHOOL_ID,1);
-        values.put(DbContract.Groups.COLUMN_NAME_STUDENT1,1);
-        values.put(DbContract.Groups.COLUMN_NAME_STUDENT2,1);
-        long newwRowID = db.insert(DbContract.Students.TABLE_NAME,null,values);
-        Log.v("MainActivity","New Student ID"+ newwRowID);
-        if (newwRowID == -1){
-            Toast.makeText(this,"Error with saving Student", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this,"Student  saved with row id:" + newwRowID, Toast.LENGTH_SHORT).show ();
+            BufferedReader buffer = new BufferedReader(new FileReader(file));
+            String line = "";
+            String tableName = DbContract.Students.TABLE_NAME;
+            String columns = DbContract.Students.COLUMN_NAME_GROUP_NAME + "," + DbContract.Students.COLUMN_NAME_GENDER + "," + DbContract.Students.COLUMN_NAME_SCHOOL + ",";
+            String str1 = "INSERT INTO " + tableName + " (" + columns + ") values(";
+            String str2 = ");";
+
+            db.beginTransaction();
+            try {
+                while ((line = buffer.readLine()) != null) {
+                    String[] colums = line.split(",");
+                    if (colums.length != 3) {
+                        Log.d("CSVParser", "Skipping Bad CSV Row");
+                        continue;
+                    }
+                    ContentValues values = new ContentValues(3);
+                    values.put(DbContract.Students.COLUMN_NAME_STUDENT, colums[0].trim());
+                    values.put(DbContract.Students.COLUMN_NAME_GENDER, colums[1].trim());
+                    values.put(DbContract.Students.COLUMN_NAME_SCHOOL, colums[2].trim());
+                    db.insert(tableName, null, values);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            db.setTransactionSuccessful();
+            Utils.showSnackBar(view, "Excel imported into " + tableName);
+
+            db.endTransaction();
 
         }
-    }*/
 
 
-    private void insertSession()
 
-    {
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(DbContract.Sessions.COLUMN_NAME_GROUP_NAME, "aa123");
-        long newwRowID = db.insert(DbContract.Sessions.TABLE_NAME,null,values);
-        Log.v("MainActivity","New Session added"+ newwRowID);
-        if (newwRowID == -1){
-            Toast.makeText(this,"Error with saving Session", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this,"Session  saved with row id:" + newwRowID, Toast.LENGTH_SHORT).show ();
 
-        }
-    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -448,18 +454,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
-            case R.id.action_insert_session_dummy_data:
-                insertSession();
-                return true;
             case R.id.action_insert_student_dummy_data:
                 // Respond to a click on the "Delete all entries" menu option
-                insertStudent();
-                return true;
-            case R.id.action_delete_all_Sessions:
-                // Do nothing for now
+                try {
+                    insertStudent((CoordinatorLayout) findViewById(R.id.coordinator));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return true;
             case R.id.action_delete_all_students:
                 // Do nothing for now

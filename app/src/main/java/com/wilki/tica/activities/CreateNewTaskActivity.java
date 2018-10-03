@@ -54,6 +54,7 @@ public class CreateNewTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_task);
+
         newTaskLayout = new TaskLayout(5); // new task that will be built
 
         // set drag listeners

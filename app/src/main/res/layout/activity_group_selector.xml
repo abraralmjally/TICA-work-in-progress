@@ -86,7 +86,6 @@
             android:id="@+id/button"
             android:layout_width="228dp"
             android:layout_height="66dp"
-
             android:background="@drawable/create_new_group_btn"
             android:onClick="CreateNewGroup" />
 
