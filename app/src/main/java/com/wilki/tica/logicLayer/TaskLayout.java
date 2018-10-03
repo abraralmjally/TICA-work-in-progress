@@ -5,7 +5,9 @@ import com.wilki.tica.exceptions.TaskLayoutException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by John Wilkie on 29/01/2017.
@@ -222,4 +224,13 @@ public class TaskLayout implements Serializable {
      * @return the width of the board.
      */
     public int getBoardSize(){ return BOARD_SIZE; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TaskLayout that = (TaskLayout) o;
+        return this.toString().equals(that.toString());
+    }
+
 }

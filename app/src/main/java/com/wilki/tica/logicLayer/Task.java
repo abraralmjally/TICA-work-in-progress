@@ -2,6 +2,8 @@ package com.wilki.tica.logicLayer;
 
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import com.wilki.tica.dataLayer.DbHelper;
 import com.wilki.tica.exceptions.OutOfBoundsException;
@@ -12,6 +14,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import com.wilki.tica.instructions.Forward;
@@ -469,6 +472,29 @@ public class Task implements Serializable {
      * @return the TaskLayout for this task.
      */
     public TaskLayout getTaskLayout(){ return taskLayout; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return taskNo == task.taskNo &&
+                instructionQty.equals(task.instructionQty) &&
+                taskLayout.equals(task.taskLayout) &&
+                finish.equals(task.finish) &&
+                start.equals(task.start);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "taskNo=" + taskNo +
+                ", instructionQty=" + instructionQty +
+                ", taskLayout=" + taskLayout +
+                ", finish=" + finish +
+                ", start=" + start +
+                '}';
+    }
 
     /*
      * wrapper class for returning from processing instructions with bodies.
