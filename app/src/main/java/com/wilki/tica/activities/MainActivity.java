@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     // to deal with the database
      DbHelper mDbHelper;
     public static final String DATABASE_NAME = "Tasks.db";
-    String directory_path = Environment.getExternalStorageDirectory().getPath() + "/Backup/Copy of users.xls";
+    String directory_path = Environment.getExternalStorageDirectory().getPath() + "/Backup/Students.csv";
 
 
     @Override
@@ -366,40 +366,6 @@ public class MainActivity extends AppCompatActivity {
 
         mDbHelper = new DbHelper(getApplicationContext());
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-/*
-        if (!file.exists()) {
-            Utils.showSnackBar(view, "No file");
-
-
-            return;
-        }
-        // Is used to import data from excel without dropping table
-        // ExcelToSQLite excelToSQLite = new ExcelToSQLite(getApplicationContext(), DBHelper.DB_NAME);
-
-        // if you want to add column in excel and import into DB, you must drop the table
-        ExcelToSQLite excelToSQLite = new ExcelToSQLite(getApplicationContext(), mDbHelper.getDatabaseName(), false);
-        // Import EXCEL FILE to SQLite
-        excelToSQLite.importFromFile(directory_path, new ExcelToSQLite.ImportListener() {
-            @Override
-            public void onStart() {
-
-            }
-
-            @Override
-            public void onCompleted(String dbName) {
-                Utils.showSnackBar(view, "Excel imported into " + dbName);
-               // Toast.makeText(this,"Excel imported int", Toast.LENGTH_SHORT).show ();
-
-            }
-
-            @Override
-            public void onError(Exception e) {
-                Utils.showSnackBar(view, "Error : " + e.getMessage());
-            }
-        });
-        db.close();
-
-     }*/
 
         File file = new File(directory_path);
         if (!file.exists()) {
@@ -426,6 +392,8 @@ public class MainActivity extends AppCompatActivity {
                     values.put(DbContract.Students.COLUMN_NAME_STUDENT, colums[0].trim());
                     values.put(DbContract.Students.COLUMN_NAME_GENDER, colums[1].trim());
                     values.put(DbContract.Students.COLUMN_NAME_SCHOOL, colums[2].trim());
+                   // values.put(DbContract.Students.COLUMN_NAME_GROUP_NAME, colums[3].trim());
+
                     db.insert(tableName, null, values);
                 }
             } catch (IOException e) {

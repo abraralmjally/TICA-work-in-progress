@@ -128,14 +128,6 @@ public class StudentAdapter extends BaseAdapter implements Filterable{
 
 
 
-    public View getSpinnerview(int position, View convertView, ViewGroup parent) {
-        TextView view = new TextView(context);
-        view.setTextColor(Color.BLACK);
-        view.setGravity(Gravity.CENTER);
-        view.setText(Studentslinst.get(position).getSchoolName());
-
-        return view;
-    }
 
 
         //View of Spinner on dropdown Popping
@@ -171,9 +163,13 @@ public class StudentAdapter extends BaseAdapter implements Filterable{
                 for (CStudents cStudents : StudentsFilterlinst) {
                     curretId=cStudents.getStudentID();
                     currentschool=cStudents.getSchoolName();
+                    currentgroup=cStudents.getGroupName();
+
                     if ( SSchoolName.equals(currentschool))
                     {
+
                         filterList.add(cStudents);
+
                     }
                 }
 
