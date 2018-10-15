@@ -35,6 +35,7 @@ import com.wilki.tica.TICA;
 import com.wilki.tica.fragments.BusyDialogFragment;
 import com.wilki.tica.logicLayer.InterfaceType;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 

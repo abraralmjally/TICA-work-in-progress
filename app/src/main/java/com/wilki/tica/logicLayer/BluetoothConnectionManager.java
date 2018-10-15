@@ -65,6 +65,10 @@ public class BluetoothConnectionManager {
         }
     }
 
+    public void resetConnection() {
+        robotConnection.cancel();
+    }
+
     /**
      * @return true if the device has Bluetooth and false otherwise.
      */
@@ -83,7 +87,7 @@ public class BluetoothConnectionManager {
      * Sends message via Bluetooth to connected robot.
      * @param messageToWrite message to be written to the robot.
      */
-    public void writeToRobot(String messageToWrite){
+    public void writeToRobot(String messageToWrite) throws IOException {
         if(robotConnection != null){
             robotConnection.write(messageToWrite.getBytes());
             if(!threadStarted) {
@@ -97,18 +101,14 @@ public class BluetoothConnectionManager {
      * Gets a list of devices paired via Bluetooth and connects to the robot if present.
      */
     private void makeConnection() {
-
-            robotConnection = createBluetoothConnection();
-
+        robotConnection = createBluetoothConnection();
     }
 
     /*
      * Creates connection to the robot.
      */
     private ConnectedThread createBluetoothConnection(){
-
-                return connectToDevice(bluetoothDevice);
-
+        return connectToDevice(bluetoothDevice);
     }
 
     /*
@@ -224,10 +224,8 @@ public class BluetoothConnectionManager {
         /*
          * Write data to connection
          */
-        void write(byte[] bytes) {
-            try {
-                mmOutStream.write(bytes);
-            } catch (IOException e) { e.printStackTrace(); }
+        void write(byte[] bytes) throws IOException {
+            mmOutStream.write(bytes);
         }
 
         /* Used to shutdown the connection */
