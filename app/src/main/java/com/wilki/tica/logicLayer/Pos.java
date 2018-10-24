@@ -1,6 +1,7 @@
 package com.wilki.tica.logicLayer;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by John Wilkie on 30/11/2016.
@@ -34,5 +35,22 @@ public class Pos implements Serializable {
      */
     public int getX(){
         return x;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pos pos = (Pos) o;
+        return y == pos.y &&
+                x == pos.x;
+    }
+
+    @Override
+    public String toString() {
+        return "Pos{" +
+                "y=" + y +
+                ", x=" + x +
+                '}';
     }
 }

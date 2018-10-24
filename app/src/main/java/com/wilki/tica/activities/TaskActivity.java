@@ -9,6 +9,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.wilki.tica.exceptions.BluetoothDisabledException;
+import com.wilki.tica.exceptions.NoBluetoothException;
 import com.wilki.tica.logicLayer.BluetoothConnectionManager;
 import com.wilki.tica.dragAndTouchListeners.DialogClickListener;
 import com.wilki.tica.fragments.ExitDialogueFragment;
@@ -21,6 +23,7 @@ import com.wilki.tica.logicLayer.Task;
 import com.wilki.tica.logicLayer.TaskEvaluation;
 import com.wilki.tica.logicLayer.TaskPerformance;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -238,7 +241,20 @@ public abstract class TaskActivity extends AppCompatActivity implements DialogCl
         // Check instruction sequence is valid
         //String checkedInstructionString = checkInstructionSequence(instructionString);
         //btConManager.writeToRobot(checkedInstructionString+"e");
-        btConManager.writeToRobot(instructionString+"e");
+
+        try {
+            btConManager.writeToRobot(instructionString+"e");
+        } catch (IOException e) {
+            // Bluetooth connection is no longer connected
+            try {
+                btConManager.resetConnection();
+                btConManager.connectToRobot(); // Reconnect to robot
+                btConManager.writeToRobot(instructionString+"e");
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                // Need to add code to end task and session gracefully so DB is not corrupted and notify user
+            }
+        }
     }
 
     /*

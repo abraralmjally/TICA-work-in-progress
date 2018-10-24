@@ -1,6 +1,7 @@
 package com.wilki.tica;
 
 import com.wilki.tica.logicLayer.InterfaceType;
+import com.wilki.tica.logicLayer.Session;
 import com.wilki.tica.logicLayer.Task;
 import com.wilki.tica.logicLayer.TaskAttempt;
 import com.wilki.tica.logicLayer.TaskLayout;
@@ -31,6 +32,7 @@ public class TaskPerformanceUnitTest {
     private long duration2 = 15;
     private TaskPerformance taskPerf;
     private Task task;
+    private Session SessionToPerf;
 
     @Before
     public void setUp(){
@@ -38,10 +40,11 @@ public class TaskPerformanceUnitTest {
         completed = true;
         interfaceMode = InterfaceType.SCREEN;
         task = new Task(new TaskLayout("", ""), new HashMap<String, Integer>());
+
         List<TaskAttempt> attemptsList = new ArrayList<>();
         attemptsList.add(new TaskAttempt(1, duration1, "forward"));
         attemptsList.add(new TaskAttempt(2, duration2, "forward"));
-        taskPerf = new TaskPerformance(performanceNum, task, completed,
+        taskPerf = new TaskPerformance(performanceNum,SessionToPerf, task, completed,
                 interfaceMode, attemptsList);
 
     }
@@ -58,7 +61,7 @@ public class TaskPerformanceUnitTest {
 
     @Test
     public void testSetAndGetTaskCompleted(){
-        TaskPerformance taskPerf2 = new TaskPerformance(performanceNum, null, false,
+        TaskPerformance taskPerf2 = new TaskPerformance(performanceNum,null, null, false,
                 interfaceMode, null);
         assertFalse(taskPerf2.getTaskCompleted());
         taskPerf2.setTaskAsCompleted();
@@ -85,7 +88,7 @@ public class TaskPerformanceUnitTest {
     @Test
     public void testGetInterfaceType(){
         assertEquals(interfaceMode, taskPerf.getInterfaceType());
-        TaskPerformance taskPerf2 = new TaskPerformance(1, task, true, InterfaceType.TANGIBLE, null);
+        TaskPerformance taskPerf2 = new TaskPerformance(1, SessionToPerf,task, true, InterfaceType.TANGIBLE, null);
         assertEquals(InterfaceType.TANGIBLE, taskPerf2.getInterfaceType());
     }
 
