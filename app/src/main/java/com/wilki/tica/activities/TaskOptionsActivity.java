@@ -36,7 +36,6 @@ public class TaskOptionsActivity extends AppCompatActivity {
 
     public static final String DATABASE_NAME = "Tasks.db";
     String directory_path = Environment.getExternalStorageDirectory().getPath() + "/Backup/";
-    String currentDBPath = "/data/"+ "com.wilki.tica" +"/databases/"+DATABASE_NAME;
     Button btnExport;
 
 

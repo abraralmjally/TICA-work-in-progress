@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
     // to deal with the database
      DbHelper mDbHelper;
-    public static final String DATABASE_NAME = "Tasks.db";
     String directory_path = Environment.getExternalStorageDirectory().getPath() + "/Backup/Students.csv";
 
 
@@ -366,7 +365,6 @@ public class MainActivity extends AppCompatActivity {
 
         mDbHelper = new DbHelper(getApplicationContext());
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
         File file = new File(directory_path);
         if (!file.exists()) {
             Utils.showSnackBar(view, "No file");

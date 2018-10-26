@@ -262,76 +262,10 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(Sessions.COLUMN_NAME_PERFORMANCE_NUM,
                 session.getNumPerformance());
         long newRowId = db.insert(DbContract.Sessions.TABLE_NAME, null, values);
-        /*
-        List<TaskPerformance> taskPerformance =session.getTaskPerformanceList ();
-        for(int i = 0; i < taskPerformance.size(); i++){
-            TaskPerformance run = taskPerformance.get(i);
-            ContentValues runValues = new ContentValues();
-            runValues.put(TaskPerformanceEntry.COLUMN_NAME_SESSION, newRowId);
-            runValues.put(TaskPerformanceEntry.COLUMN_NAME_PERFORMANCE_NUM, i);
-            long attemptRowId = db.insert(DbContract.TaskPerformanceEntry.TABLE_NAME, null, runValues);
-
-            if(attemptRowId < 1){
-                return false;
-            }
-        }*/
-        return newRowId > 0;
-
-    }
-/*
-    //to create group from the EditText
-    public void CreateNewGroupDB(){
-        String groupnameString = GroupNametEditText.getText().toString().trim();
-
-        ContentValues UpdateStudent1 = new ContentValues();
-        UpdateStudent1.put(Students.COLUMN_NAME_GROUP_NAME,groupnameString);
-        long newwRowID = db.update(DbContract.Students.TABLE_NAME, UpdateStudent1,Students.COLUMN_NAME_STUDENT + "= ?",new String [] {Student1Name} );
-        Log.v("CreateNewGroupActivity","New group is added to Student 1"+ newwRowID);
-
-        ContentValues UpdateStudent2 = new ContentValues();
-        UpdateStudent2.put(Students.COLUMN_NAME_GROUP_NAME,groupnameString);
-
-        long newwRowID2 = db.update(DbContract.Students.TABLE_NAME, UpdateStudent2,Students.COLUMN_NAME_STUDENT + "= ?",new String [] {Student2Name} );
-        Log.v("CreateNewGroupActivity","New group is added to Student 2"+ newwRowID);
-
-        if (newwRowID == -1){
-            Toast.makeText(this,"Error with saving Group to Student 1", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this,"Group name updated successfully for Student 1: " + newwRowID, Toast.LENGTH_SHORT).show ();
-        }
-
-        if (newwRowID2 == -1){
-            Toast.makeText(this,"Error with saving Group to Student 2", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this,"Group name updated successfully for Student 2: " + newwRowID, Toast.LENGTH_SHORT).show ();
-        }
-
-        db.close(); // Closing database connection
-
-    }
-
-
-    public boolean UpdateSession (Session session,int SessionId,TaskPerformance newTP ){
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(Sessions.COLUMN_NAME_PERFORMANCE_NUM,newTP.getPerformanceId());
-        long newRowId = db.update(DbContract.Sessions.TABLE_NAME, values,Sessions._SessionID + "=?",SessionId);
-        List<TaskPerformance> taskPerformance =session.getTaskPerformanceList ();
-        for(int i = 0; i < taskPerformance.size(); i++){
-            TaskPerformance run = taskPerformance.get(i);
-            ContentValues runValues = new ContentValues();
-            runValues.put(TaskPerformanceEntry.COLUMN_NAME_SESSION, newRowId);
-            runValues.put(TaskPerformanceEntry.COLUMN_NAME_PERFORMANCE_NUM, i);
-            long attemptRowId = db.insert(DbContract.TaskPerformanceEntry.TABLE_NAME, null, runValues);
-            if(attemptRowId < 1){
-                return false;
-            }
-        }
         return newRowId > 0;
 
     }
 
-    /*
 
     /**
      * Reads all task attempts with the provided performance id from the task attempt table.
@@ -507,7 +441,7 @@ public class DbHelper extends SQLiteOpenHelper {
     {  List<CStudents> Studentslist = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         // How how the result stor in the cursor
-        String sortOrder = Students.COLUMN_NAME_STUDENT + " DESC";
+        String sortOrder = Students.COLUMN_NAME_STUDENT + " DESC" ;
         Cursor StudentCursor = db.query( Students.TABLE_NAME,null, null, null, null, null,sortOrder,null);
         int StudentID=StudentCursor.getColumnIndex(Students._StudentID);
         int Studentstudentname=StudentCursor.getColumnIndex(Students.COLUMN_NAME_STUDENT);
