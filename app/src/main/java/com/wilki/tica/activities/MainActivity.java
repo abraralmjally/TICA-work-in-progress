@@ -59,7 +59,7 @@ import java.util.Set;
  */
 
 public class MainActivity extends AppCompatActivity {
-
+    public static boolean usingBluetooth = false;
     private final int REQUEST_ENABLE_BT = 1;
     BluetoothAdapter bluetoothAdapter;
     private  BluetoothConnectionManager btConManager;
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     SwipeRefreshLayout mSwipeRefreshLayout;
     ArrayAdapter<BluetoothDevice> pairedDeviceAdapter;
     ArrayList<BluetoothDevice> pairedDeviceArrayList;
+
     //Register for the ACTION_FOUND broadcast//
     boolean isRegistered = false;
     IntentFilter filter ;
@@ -85,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
         textInfo = (TextView)findViewById(R.id.info);
         textStatus = (TextView)findViewById(R.id.status);
         listViewPairedDevice = (ListView)findViewById(R.id.pairedlist);
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (usingBluetooth)
+            bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         //Register for the ACTION_FOUND broadcast//
 
 
@@ -97,7 +99,9 @@ public class MainActivity extends AppCompatActivity {
                 // This method performs the actual data-refresh operation.
                 // The method calls setRefreshing(false) when it's finished.
                 Toast.makeText(getApplicationContext(), "Refreshing", Toast.LENGTH_LONG).show();
-                String stInfo = bluetoothAdapter.getName() + "\n" + bluetoothAdapter.getAddress();
+                String stInfo = "";
+                if (usingBluetooth)
+                    stInfo = bluetoothAdapter.getName() + "\n" + bluetoothAdapter.getAddress();
                 textInfo.setText(stInfo);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -112,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
 
-        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)){
+        if (usingBluetooth && !getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)){
             Toast.makeText(this,
                     "FEATURE_BLUETOOTH NOT support",
                     Toast.LENGTH_LONG).show();
@@ -120,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (bluetoothAdapter == null) {
+        if (usingBluetooth && bluetoothAdapter == null) {
             Toast.makeText(this,
                     "Bluetooth is not supported on this hardware platform",
                     Toast.LENGTH_LONG).show();
@@ -137,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        if(((TICA) getApplicationContext()).getBtConManager() == null){
+        if(usingBluetooth && ((TICA) getApplicationContext()).getBtConManager() == null){
             startBluetooth();
         }
     }
