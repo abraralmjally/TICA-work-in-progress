@@ -69,7 +69,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainMenuActivity"/>
         </activity>
-        //Todo: when I go back to taskDetail, the app crach
+
         <activity android:name=".activities.TangibleTaskActivity"
             android:label="@string/title_activity_TangibleTask"
             android:parentActivityName=".activities.TaskDetailsActivity">
@@ -77,7 +77,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.TaskDetailsActivity"/>
         </activity>
-        //Todo: when I go back to taskDetail, the app crach
+
         <activity android:name=".activities.ScreenTaskActivity"
             android:label="@string/title_activity_ScreenTask"
             android:parentActivityName=".activities.TaskDetailsActivity">
